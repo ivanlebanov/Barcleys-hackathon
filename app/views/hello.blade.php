@@ -26,11 +26,11 @@
   </header>
  
    <div class="container">
- 
        <div id="piechart" style="width: 900px; height: 500px;"></div>
-   
-
     </div>
+	<div class="container">
+	   <div id="piechart2" style="width: 900px; height: 500px;"></div>
+	</div>
 	<div class="welcome">
 	<?php $table = DB::table('table 1')->get();
 		$dev = 0;
@@ -60,13 +60,27 @@
 			}
 		}?>
 
-
+	<?php
+		$linux = 0;
+		$windows = 0;
+		$AIX = 0;
+		 $table2 = DB::table('table 1')->get();
+		foreach ($table2 as $os)
+		{ 
+			if (strpos($os->Ip ,'Linux') !== false) {
+				$linux++;
+			}elseif (strpos($os->Ip ,'Windows') !== false){
+				$windows++;
+			}
+			else{
+				$AIX++;
+			}
+		}?>
  <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ URL::asset('js/javascript.js') }}"></script>
 	<script>
     var dev = <?php echo json_encode($dev); ?>;
     var UNCLASSIFIED = <?php echo json_encode($UNCLASSIFIED); ?>;
@@ -74,6 +88,9 @@
     var sit = <?php echo json_encode($sit); ?>;
     var uat = <?php echo json_encode($uat); ?>;
     var dr = <?php echo json_encode($dr); ?>;
+    var linux = <?php echo json_encode($linux); ?>;
+    var windows = <?php echo json_encode($windows); ?>;
+    var AIX = <?php echo json_encode($AIX); ?>;
           google.setOnLoadCallback(drawChart);
       function drawChart() {
 
@@ -94,6 +111,22 @@
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
+ 
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Task', 'Comparision of operation systems'],
+          ['Linux',     linux],
+          ['Windows',      windows],
+          ['AIX',  AIX],
+        ]);
+
+        var options2 = {
+          title: 'Comparision of operation systems'
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart2.draw(data2, options2);
     
     }
 	</script>

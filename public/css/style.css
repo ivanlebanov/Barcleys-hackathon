@@ -1739,6 +1739,13 @@ p {
 #piechart {
   background-color: transparent;
 }
+.container {
+  margin: 20px auto;
+  background: #ffffff;
+}
+.navbar .container {
+  margin-top: 0px;
+}
 .logo img {
   width: 219px;
   height: 42px;
@@ -1746,6 +1753,9 @@ p {
 }
 header {
   background-color: #ffffff;
+}
+header .container {
+  margin-top: 0;
 }
 /*---------------------------------------------------
     LESS Elements 0.9
