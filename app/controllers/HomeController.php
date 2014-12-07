@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends BaseController {
+class HomeController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ class IndexController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('index');
+		return View::make('hello');
 	}
 
 }
