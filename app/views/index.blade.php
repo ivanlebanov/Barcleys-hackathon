@@ -39,14 +39,14 @@
     <h2>Application types</h2>
     <div class="col-xs-12">
             <?php
-             $tableType = DB::table('table 4')->distinct()->lists('HostType');
+             $tableType = DB::table('table 1')->distinct()->lists('HostType');
               foreach ($tableType as $key) {
                 echo '<div class="col-xs-4">'.$key. '</div>';
               }
              ?>
     </div>
   </div>
-	<?php $table = DB::table('table 4')->get();
+	<?php $table = DB::table('table 1')->get();
 		$dev = 0;
 		$UNCLASSIFIED = 0;
 		$prod = 0;
@@ -78,7 +78,7 @@
 		$linux = 0;
 		$windows = 0;
 		$AIX = 0;
-		 $table2 = DB::table('table 4')->get();
+		 $table2 = DB::table('table 1')->get();
 		foreach ($table2 as $os)
 		{ 
 			if (strpos($os->Ip ,'Linux') !== false) {
